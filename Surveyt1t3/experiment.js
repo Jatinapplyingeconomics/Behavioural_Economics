@@ -137,4 +137,114 @@ timeline.push({
   type: htmlButtonResponse,
   stimulus: `
     <div class="instructions-box">
-      <p>By clicking <strong>"I Agree"</strong> yo
+      <p>By clicking <strong>"I Agree"</strong> you confirm that you:</p>
+      <ul style="text-align:left; max-width:500px; margin:0 auto;">
+        <li>Are 18 years of age or older</li>
+        <li>Understand that participation is voluntary</li>
+        <li>Consent to your anonymised responses being used for academic research</li>
+      </ul>
+    </div>
+  `,
+  choices: ["I do not agree", "I Agree"],
+  on_finish: function(data) {
+    if (data.response === 0) jsPsych.endExperiment("You declined to participate. Thank you.");
+  }
+});
+
+for (let i = 0; i < TASKS.length; i++) {
+  const task = TASKS[i];
+  timeline.push({
+    type: htmlButtonResponse,
+    stimulus: function() {
+      return `
+        <div class="task-header">
+          <span class="task-counter">Round ${task.taskNumber} of 8</span>
+          <p class="task-question">Which candidate would you prefer to hire?</p>
+        </div>
+        <div class="profile-wrapper">
+          ${renderProfileCard(task.left, "Candidate A", task.attributeOrder)}
+          ${renderProfileCard(task.right, "Candidate B", task.attributeOrder)}
+        </div>
+      `;
+    },
+    choices: ["Choose Candidate A", "Choose Candidate B"],
+    data: { respondent_id: respondent_id, task_number: task.taskNumber },
+    on_finish: function(data) {
+      data.chosen = data.response === 0 ? "A" : "B";
+      data.has_ambiguous = task.hasAmbiguous;
+      data.A_qualification = task.left.qualification;
+      data.A_university = task.left.university;
+      data.A_experience = task.left.experience;
+      data.A_scholarship = task.left.scholarship;
+      data.A_political = task.left.political || "";
+      data.A_caste = task.left.caste_type;
+      data.B_qualification = task.right.qualification;
+      data.B_university = task.right.university;
+      data.B_experience = task.right.experience;
+      data.B_scholarship = task.right.scholarship;
+      data.B_political = task.right.political || "";
+      data.B_caste = task.right.caste_type;
+      data.attr_order = task.attributeOrder.join(",");
+    }
+  });
+}
+
+timeline.push({
+  type: surveyHtmlForm,
+  preamble: `
+    <div class="instructions-box">
+      <h3>Optional Background Questions</h3>
+      <p>These help us understand patterns across groups. All responses are optional and anonymous.</p>
+    </div>
+  `,
+  html: `
+    <label>Age</label><br>
+    <input type="number" name="age" min="18" max="80" placeholder="e.g. 24"
+           style="width:100%; padding:8px; font-size:15px; margin-top:4px; border:1px solid #ccc; border-radius:6px;" />
+    <br><br>
+    <label>Gender</label><br>
+    <select name="gender">
+      <option value="">Prefer not to say</option>
+      <option>Male</option><option>Female</option>
+      <option>Non-binary</option><option>Gender queer</option>
+    </select>
+    <br><br>
+    <label>Education</label><br>
+    <select name="education">
+      <option value="">Prefer not to say</option>
+      <option>High school or below</option><option>Undergraduate</option>
+      <option>Postgraduate</option><option>PhD</option>
+    </select>
+    <br><br>
+    <label>Profession</label><br>
+    <select name="profession">
+      <option value="">Prefer not to say</option>
+      <option>Student</option><option>Working (employed)</option>
+      <option>Self-employed</option><option>Unemployed</option>
+    </select>
+    <br><br>
+    <label>Caste</label><br>
+    <select name="caste">
+      <option value="">Prefer not to say</option>
+      <option>SC</option><option>ST</option><option>OBC</option><option>General</option>
+    </select>
+  `,
+  button_label: "Submit",
+  data: { respondent_id },
+  on_finish: function(data) { submitToSheet(data.response || {}); }
+});
+
+timeline.push({
+  type: htmlButtonResponse,
+  stimulus: `
+    <div class="instructions-box end-screen">
+      <div class="end-icon">✓</div>
+      <h2>Thank you for participating!</h2>
+      <p>Your responses have been recorded.</p>
+      <p class="pravah-credit">This study is conducted in partnership with <strong>Pravah NGO</strong>.</p>
+    </div>
+  `,
+  choices: ["Finish"]
+});
+
+jsPsych.run(timeline);
