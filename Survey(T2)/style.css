@@ -1,0 +1,297 @@
+/* ============================================================
+   Pravah Experiment — Style
+   Clean, trustworthy, academic feel
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap');
+
+:root {
+  --bg:           #f5f4f0;
+  --surface:      #ffffff;
+  --border:       #d6d3cc;
+  --text:         #1a1a1a;
+  --text-muted:   #6b6860;
+  --accent:       #1d4ed8;
+  --accent-light: #dbeafe;
+  --danger:       #b91c1c;
+  --warn-bg:      #fef9c3;
+  --warn-border:  #ca8a04;
+  --success-bg:   #dcfce7;
+  --success-text: #166534;
+  --card-shadow:  0 2px 12px rgba(0,0,0,0.08);
+  --radius:       10px;
+}
+
+/* ---- Reset & base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ---- jsPsych overrides ---- */
+#jspsych-content,
+.jspsych-display-element {
+  background: var(--bg) !important;
+}
+
+.jspsych-content-wrapper {
+  max-width: 900px !important;
+  padding: 30px 20px !important;
+}
+
+/* ---- Instructions / consent box ---- */
+.instructions-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  max-width: 640px;
+  margin: 0 auto 24px;
+  box-shadow: var(--card-shadow);
+  text-align: left;
+}
+
+.instructions-box p {
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.instructions-box h3 {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 17px;
+  margin: 20px 0 8px;
+  color: var(--text);
+}
+
+.instructions-box ul {
+  padding-left: 22px;
+  margin-bottom: 14px;
+}
+
+.instructions-box ul li {
+  margin-bottom: 6px;
+}
+
+/* ---- Banners ---- */
+.visibility-banner {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #713f12;
+}
+
+.workshop-banner {
+  background: var(--accent-light);
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #1e3a8a;
+}
+
+/* ---- Task header ---- */
+.task-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.task-counter {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.task-question {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.visibility-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--warn-bg);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-top: 4px;
+}
+
+/* ---- Profile cards ---- */
+.profile-wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.profile-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 24px 20px;
+  flex: 1;
+  min-width: 260px;
+  max-width: 380px;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.profile-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(29, 78, 216, 0.12);
+}
+
+.profile-header {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-list li {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.attr-label {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 2px;
+}
+
+.attr-value {
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* ---- jsPsych buttons ---- */
+.jspsych-btn {
+  font-family: 'IBM Plex Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 11px 28px !important;
+  border-radius: 8px !important;
+  border: 1.5px solid var(--accent) !important;
+  background: var(--surface) !important;
+  color: var(--accent) !important;
+  cursor: pointer !important;
+  transition: background 0.15s, color 0.15s !important;
+  letter-spacing: 0.02em !important;
+  margin: 6px 8px !important;
+}
+
+.jspsych-btn:hover {
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+
+/* First button in consent 2 = "I do not agree" = muted style */
+.jspsych-html-button-response-btngroup button:first-child {
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+}
+
+.jspsych-html-button-response-btngroup button:first-child:hover {
+  background: #f3f3f3 !important;
+  color: var(--text) !important;
+}
+
+/* ---- Survey form inputs ---- */
+.jspsych-survey-html-form select,
+.jspsych-survey-html-form input[type="text"],
+.jspsych-survey-html-form input[type="number"] {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--text);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  appearance: none;
+}
+
+.jspsych-survey-html-form select:focus,
+.jspsych-survey-html-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.jspsych-survey-html-form label {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 16px;
+}
+
+/* ---- End screen ---- */
+.end-screen {
+  text-align: center;
+}
+
+.end-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--success-bg);
+  color: var(--success-text);
+  font-size: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.end-screen h2 {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 620px) {
+  .profile-wrapper { flex-direction: column; }
+  .profile-card     { max-width: 100%; }
+  .instructions-box { padding: 22px 18px; }
+}
