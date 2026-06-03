@@ -24,7 +24,7 @@ const SCHOLARSHIPS = {
   general: "Received national scholarship for General category students"
 };
 
-const AMBIGUOUS_SIGNAL = "Student member, All India Students' Federation (AISF)";
+const AMBIGUOUS_SIGNAL = "Congress";
 
 // ================= HELPERS =================
 
@@ -68,7 +68,7 @@ const ATTRIBUTE_LABELS = {
   university:    "University",
   experience:    "Work Experience",
   scholarship:   "Scholarship",
-  political:     "Student Activity"
+  political:     "Political leaning"
 };
 
 function renderProfileCard(profile, label, attributeOrder) {
