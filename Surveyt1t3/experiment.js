@@ -148,7 +148,7 @@ function submitToSheet(demo) {
       resp_caste:      demo.caste         || ""
     }));
 
-  fetch("https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID_HERE/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwMV9JG4Gf5UTs2zPTY0ETC9G210uP6nmPTUouCWKyMEfLIEenqLEIetBVg83pwDGaJFg/exec", {
     method:  "POST",
     mode:    "no-cors",
     body:    JSON.stringify(taskRows),
