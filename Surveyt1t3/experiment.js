@@ -1,14 +1,3 @@
-// ================= SURVEY A =================
-// Used TWICE by the same cohort:
-//   — Before the Pravah workshop  (T1 / Baseline)
-//   — After the Pravah workshop   (T3 / Post-Workshop)
-//
-// No URL parameters needed. The same link is shared both times.
-// T1 vs T3 rows are separated in the sheet by the timestamp column.
-//
-// Structure: 8 rounds, fully anonymous.
-// Ambiguous signal appears on BOTH candidates in 2 randomly chosen rounds.
-
 const jsPsych = initJsPsych({ override_safe_mode: true });
 
 const htmlButtonResponse = jsPsychHtmlButtonResponse;
