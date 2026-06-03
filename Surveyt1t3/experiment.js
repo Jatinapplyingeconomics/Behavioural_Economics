@@ -24,8 +24,7 @@ const SCHOLARSHIPS = {
   general: "Received national scholarship for General category students"
 };
 
-const AMBIGUOUS_SIGNAL = "Congress";
-
+const POLITICAL_LEANINGS = ["Congress", "Communist Party"];
 // ================= HELPERS =================
 
 function pickRandom(arr) {
@@ -54,7 +53,7 @@ function generateProfile(casteBucket, includeAmbiguous) {
     university:    pickRandom(UNIVERSITIES),
     experience:    pickRandom(EXPERIENCES),
     scholarship:   SCHOLARSHIPS[casteBucket],
-    political:     includeAmbiguous ? AMBIGUOUS_SIGNAL : null,
+political: includeAmbiguous ? pickRandom(POLITICAL_LEANINGS) : null,
     caste_type:    casteBucket
   };
 }
